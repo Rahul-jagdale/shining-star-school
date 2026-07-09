@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Under Maintenance - Shining Star Public School, Bidar</title>
+    <meta name="description" content="Shining Star Public School website is undergoing scheduled maintenance. Please contact us at +91 9845754212 for admissions and inquiries.">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600;700&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome for Premium Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary: #A55EEA;
+            --primary-glow: rgba(165, 94, 234, 0.4);
+            --secondary: #FFB347;
+            --accent: #FF9A9E;
+            --bg-start: #0f0c20;
+            --bg-mid: #15102a;
+            --bg-end: #1e1235;
+            --text-light: #ffffff;
+            --text-muted: #cdcae0;
+            --card-bg: rgba(255, 255, 255, 0.04);
+            --card-border: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Outfit', sans-serif;
+            background: radial-gradient(circle at center, var(--bg-mid) 0%, var(--bg-start) 60%, var(--bg-end) 100%);
+            color: var(--text-light);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow-x: hidden;
+            position: relative;
+            padding: 20px;
+        }
+
+        /* Ambient Background Elements */
+        .stars-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .ambient-glow-1 {
+            position: absolute;
+            top: -10%;
+            left: -10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, var(--primary-glow) 0%, transparent 70%);
+            filter: blur(80px);
+            opacity: 0.6;
+            animation: pulse-glow 8s infinite alternate ease-in-out;
+        }
+
+        .ambient-glow-2 {
+            position: absolute;
+            bottom: -10%;
+            right: -10%;
+            width: 50%;
+            height: 50%;
+            background: radial-gradient(circle, rgba(255, 154, 158, 0.2) 0%, transparent 70%);
+            filter: blur(80px);
+            opacity: 0.5;
+            animation: pulse-glow 10s infinite alternate-reverse ease-in-out;
+        }
+
+        .star {
+            position: absolute;
+            background: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite ease-in-out;
+        }
+
+        /* Glassmorphism Card */
+        .maintenance-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid var(--card-border);
+            border-radius: 28px;
+            padding: 50px 40px;
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3),
+                        0 0 40px rgba(165, 94, 234, 0.1);
+            z-index: 10;
+            position: relative;
+            animation: card-float 6s infinite ease-in-out;
+        }
+
+        /* School Logo Container */
+        .logo-wrapper {
+            width: 130px;
+            height: 130px;
+            background: #ffffff;
+            border-radius: 50%;
+            margin: 0 auto 30px auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+            box-shadow: 0 10px 30px rgba(165, 94, 234, 0.25),
+                        0 0 0 8px rgba(255, 255, 255, 0.05);
+            border: 3px solid rgba(255, 255, 255, 0.8);
+            position: relative;
+        }
+
+        .logo-wrapper img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+
+        .sparkle-icon {
+            position: absolute;
+            color: var(--secondary);
+            font-size: 24px;
+            animation: spin-sparkle 4s infinite linear;
+        }
+
+        .sparkle-1 {
+            top: -10px;
+            right: -10px;
+        }
+
+        .sparkle-2 {
+            bottom: 5px;
+            left: -15px;
+            animation-duration: 6s;
+            color: var(--accent);
+        }
+
+        /* School Name */
+        .school-name {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.2rem;
+            color: var(--secondary);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        /* Heading */
+        .heading {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #ffffff 30%, #e0c3fc 70%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Message Description */
+        .description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 30px;
+            padding: 0 10px;
+        }
+
+        /* Animated Loading Progress Bar */
+        .progress-bar-container {
+            width: 100%;
+            max-width: 250px;
+            height: 6px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            margin: 0 auto 35px auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 40%;
+            background: linear-gradient(90deg, var(--primary), var(--accent), var(--secondary));
+            border-radius: 10px;
+            position: absolute;
+            animation: fill-bar 2.5s infinite ease-in-out;
+        }
+
+        /* Contact Details Section */
+        .contact-info {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 18px;
+            padding: 24px;
+            margin-bottom: 35px;
+            text-align: left;
+        }
+
+        .contact-title {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.05rem;
+            color: var(--text-light);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .contact-title i {
+            color: var(--primary);
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+        }
+
+        .contact-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .contact-item i {
+            margin-top: 3px;
+            width: 18px;
+            color: var(--accent);
+        }
+
+        .contact-item a {
+            color: var(--text-muted);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .contact-item a:hover {
+            color: var(--secondary);
+        }
+
+        /* CTA Action Buttons */
+        .actions-container {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-call {
+            background: linear-gradient(135deg, var(--primary) 0%, #8e44ad 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(165, 94, 234, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-call:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(165, 94, 234, 0.45);
+        }
+
+        .btn-whatsapp {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            color: white;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.25);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .btn-whatsapp:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.4);
+        }
+
+        /* Footer Copyright */
+        .footer-note {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: rgba(255, 255, 255, 0.3);
+            letter-spacing: 0.5px;
+        }
+
+        /* Animations Keyframes */
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; transform: scale(0.8); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        @keyframes pulse-glow {
+            0% { transform: scale(1) translate(0, 0); }
+            100% { transform: scale(1.15) translate(3%, 3%); }
+        }
+
+        @keyframes card-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes spin-sparkle {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.2); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        @keyframes fill-bar {
+            0% { left: -40%; }
+            50% { left: 100%; }
+            100% { left: 100%; }
+        }
+
+        /* Responsive styling */
+        @media (max-width: 600px) {
+            .maintenance-card {
+                padding: 40px 20px;
+            }
+
+            .heading {
+                font-size: 2.1rem;
+            }
+
+            .logo-wrapper {
+                width: 110px;
+                height: 110px;
+            }
+
+            .actions-container {
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="stars-container" id="starsContainer">
+        <div class="ambient-glow-1"></div>
+        <div class="ambient-glow-2"></div>
+    </div>
+
+    <div class="maintenance-card">
+        <div class="logo-wrapper">
+            <img src="assets/images/logo.png" alt="Shining Star School Logo">
+            <i class="fa-solid fa-star sparkle-icon sparkle-1"></i>
+            <i class="fa-solid fa-wand-magic-sparkles sparkle-icon sparkle-2"></i>
+        </div>
+
+        <div class="school-name">Shining Star Public School</div>
+        <h1 class="heading">Upgrading Our Digital Space!</h1>
+        <p class="description">
+            Dear Parents & Visitors, we are currently carrying out scheduled improvements to our website to make your online experience even brighter. We will be back online shortly!
+        </p>
+
+        <div class="progress-bar-container">
+            <div class="progress-bar"></div>
+        </div>
+
+        <div class="contact-info">
+            <div class="contact-title">
+                <i class="fa-solid fa-circle-info"></i>
+                <span>Need Urgent Assistance?</span>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-phone"></i>
+                <div>
+                    <strong>Call Us:</strong> <br>
+                    <a href="tel:+919845754212">+91 98457 54212</a>, <a href="tel:+919845749212">+91 98457 49212</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-envelope"></i>
+                <div>
+                    <strong>Email Address:</strong> <br>
+                    <a href="mailto:shiningstarschoolbidar@gmail.com">shiningstarschoolbidar@gmail.com</a>
+                </div>
+            </div>
+            <div class="contact-item">
+                <i class="fa-solid fa-location-dot"></i>
+                <div>
+                    <strong>School Campus:</strong> <br>
+                    Hyder Colony, Beside Haibati Hospital, Opp KEB, Adarsh Colony, Chidri Road, Bidar, Karnataka 585401
+                </div>
+            </div>
+        </div>
+
+        <div class="actions-container">
+            <a href="tel:+919845754212" class="btn btn-call">
+                <i class="fa-solid fa-phone-volume"></i> Call Admissions
+            </a>
+            <a href="https://wa.me/919845754212?text=Hello%20Shining%20Star%20School%20Management%2C%20I%20have%20an%20inquiry." target="_blank" rel="noopener" class="btn btn-whatsapp">
+                <i class="fa-brands fa-whatsapp"></i> Chat on WhatsApp
+            </a>
+        </div>
+
+        <div class="footer-note">
+            &copy; 2026 Shining Star Public School. All Rights Reserved.
+        </div>
+    </div>
+
+    <!-- Background Twinkling Stars Generation Script -->
+    <script>
+        const container = document.getElementById('starsContainer');
+        const count = 40;
+
+        for (let i = 0; i < count; i++) {
+            const star = document.createElement('div');
+            star.className = 'star';
+            
+            // Random styling for star variations
+            const size = Math.random() * 3 + 1;
+            const x = Math.random() * 100;
+            const y = Math.random() * 100;
+            const delay = Math.random() * 5;
+            const duration = Math.random() * 4 + 2;
+
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${x}%`;
+            star.style.top = `${y}%`;
+            star.style.animationDelay = `${delay}s`;
+            star.style.animationDuration = `${duration}s`;
+
+            container.appendChild(star);
+        }
+    </script>
+</body>
+
+</html>

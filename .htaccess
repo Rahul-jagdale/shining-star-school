@@ -1,0 +1,24 @@
+# =======================================================================
+# SHINING STAR PUBLIC SCHOOL - MAINTENANCE TOGGLE
+# =======================================================================
+# 
+# How to toggle Maintenance Mode:
+# 1. To Turn ON Maintenance: Keep the file named "maintenance.enable" in the root directory.
+# 2. To Turn OFF Maintenance: Rename the file to "maintenance.disable" or delete it.
+#
+# No code or server config edits are needed!
+# =======================================================================
+
+RewriteEngine On
+
+# 1. Check if the "maintenance.enable" trigger file exists in the directory
+RewriteCond %{DOCUMENT_ROOT}/maintenance.enable -f
+
+# 2. Do not redirect if the request is already for maintenance.html
+RewriteCond %{REQUEST_URI} !/maintenance.html$ [NC]
+
+# 3. Do not redirect assets (images, CSS, JS, fonts) so page loads perfectly
+RewriteCond %{REQUEST_URI} !\.(css|js|png|jpg|jpeg|gif|svg|ico|webp|woff|woff2|ttf|eot)$ [NC]
+
+# 4. Redirect all traffic to maintenance.html (temporary 302 redirect)
+RewriteRule ^(.*)$ /maintenance.html [R=302,L]

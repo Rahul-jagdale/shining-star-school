@@ -195,7 +195,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!field.value.trim()) { group.classList.add('invalid'); valid = false; }
       else { group.classList.remove('invalid'); }
     });
-    
+
     if (!valid) {
       e.preventDefault();
     } else {
