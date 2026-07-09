@@ -1,14 +1,6 @@
 {
   "cleanUrls": true,
   "trailingSlash": false,
-  "//instructions": "To ENABLE maintenance mode on Vercel, rename the key '_redirects_disabled' to 'redirects'. To DISABLE it, rename it back to '_redirects_disabled'.",
-  "_redirects_disabled": [
-    {
-      "source": "/((?!maintenance|assets|css|js|favicon).*)",
-      "destination": "/maintenance.html",
-      "permanent": false
-    }
-  ],
   "rewrites": [
     {
       "source": "/(.*)",
